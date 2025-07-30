@@ -52,10 +52,6 @@ Video guide recommended for Windows users: [video guide](https://www.youtube.com
 
    - The newly trained model should be in `data/{your_model_name}` folder
    - Copy the `{your_model_name}.traineddata` file and put it in the `tessdata` folder of your **Tesseract OCR folder** (the folder in which u install Tesseract)
-
-   - TesseractOCR/
-├── tessdata/ ⟵ paste it here
-└── etc..
    - test data will be in the `testdata` folder. In that folder, the test images is currently being enumerated (which is recommended for faster lookup during cross check). Enumaration could be attained by running `name_change.py` script
    - Choose model in `test_tesseract.py` file then run it to test your model with the current test data
    - Results will be in the `results` folder in `{image-name}.txt` format
