@@ -6,7 +6,7 @@ import pytesseract
 # === Configuration ===
 INPUT_FOLDER = Path("testdata")
 OUTPUT_FOLDER = Path("results")
-MODEL = "vie"
+MODEL = "trustsoft"
 
 # === Create output directory if it doesn't exist ===
 OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
@@ -22,7 +22,7 @@ for image_path in INPUT_FOLDER.iterdir():
             img = Image.open(image_path)
             text = pytesseract.image_to_string(img, lang=MODEL)
 
-            output_file = OUTPUT_FOLDER / f"{image_path.stem}.txt"
+            output_file = OUTPUT_FOLDER / f"{image_path.stem}_{MODEL}.txt"
             with open(output_file, "w", encoding="utf-8") as f:
                 f.write(text)
             print(f"✅ Saved to: {output_file.name}")
