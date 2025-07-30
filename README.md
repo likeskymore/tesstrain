@@ -2,20 +2,60 @@
 
 > Training workflow for Tesseract 5 as a Makefile for dependency tracking.
 
-* [Installation](#installation)
-    * [Auxiliaries](#auxiliaries)
-    * [Leptonica, Tesseract](#leptonica-tesseract)
-       * [Windows](#windows)
-    * [Python](#python)
-    * [Language data](#language-data)
-* [Usage](#usage)    
-    * [Choose the model name](#choose-the-model-name)
-    * [Provide ground truth data](#provide-ground-truth-data)
-    * [Train](#train)
-    * [Change directory assumptions](#change-directory-assumptions)
-    * [Make model files (traineddata)](#make-model-files-traineddata)
-    * [Plotting CER](#plotting-cer)
-* [License](#license)
+- [tesstrain](#tesstrain)
+  - [Overview of trustsoft's version](#overview-of-trustsofts-version)
+  - [Installation](#installation)
+    - [Auxiliaries](#auxiliaries)
+    - [Leptonica, Tesseract](#leptonica-tesseract)
+      - [Windows](#windows)
+    - [Python](#python)
+    - [Language data](#language-data)
+  - [Usage](#usage)
+    - [Choose the model name](#choose-the-model-name)
+    - [Provide ground truth data](#provide-ground-truth-data)
+    - [Train](#train)
+    - [Choose training regime](#choose-training-regime)
+    - [Change directory assumptions](#change-directory-assumptions)
+    - [Make model files (traineddata)](#make-model-files-traineddata)
+    - [Plotting CER](#plotting-cer)
+  - [License](#license)
+
+## Overview of trustsoft's version
+
+Video guide recommended for Windows users: [video guide](https://www.youtube.com/watch?v=SvhoBT-PnME)
+
+**Disclaimer: the following guide is written assuming you have already installed tesseract/followed the video guide above**
+
+1. Environment setup guide
+
+   - run following commands in order:
+   - `pip install uv` ⟶ `uv venv` ⟶ `source .venv/Scripts/activate` ⟶ `uv sync`
+
+2. Training data source
+
+   - Reusing the existing dataset of VietOCR ([Github](https://github.com/pbcquoc/vietocr), [Data](https://drive.google.com/file/d/1T0cmkhTgu3ahyMIwGZeby612RpVdDxOR/view))
+   - 1 million files already labelled, ready to use
+
+3. Preprocessing train data
+
+   - Train data should be put in `data/{your_model_name}-ground-truth/`
+   - run script `py name_change.py` to match data type with the expected type of the model
+
+4. Training the model
+
+   - Download the current best model of your chosen language on the tesseract repo. Put it in a folder
+   - Tweak the model's hyperparameters in train_tesseract.py, **especially the tessdata_path, this variable should be the folder where u put the best model of your chosen language download from tesseract github repo**
+   - Run `py train_tesseract.py` once you are reading
+   - The training process should take about 20 minutes with 2500 files as training data
+
+5. Using the newly trained model
+
+   - The newly trained model should be in `data/{your_model_name}` folder
+   - Copy the `{your_model_name}.traineddata` file and put it in the `tessdata` folder of your **Tesseract OCR folder** (the folder in which u install Tesseract)
+
+   - TesseractOCR/
+   ├── tessdata/ ⟶ **paste it here**
+   └── etc..
 
 ## Installation
 
