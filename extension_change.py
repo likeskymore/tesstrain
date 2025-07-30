@@ -15,17 +15,18 @@ for filename in os.listdir(directory):
         )
         print(f"Renamed TXT: {filename} → {new_filename}")
 
-# === 2. Convert .jpg to .png ===
+# === 2. Convert all non-PNG images to PNG ===
 for filename in os.listdir(directory):
-    if filename.lower().endswith(".jpg"):
-        jpg_path = os.path.join(directory, filename)
-        png_filename = filename[:-4] + ".png"
-        png_path = os.path.join(directory, png_filename)
+    filepath = os.path.join(directory, filename)
+    name, ext = os.path.splitext(filename)
+    ext = ext.lower()
 
+    if ext in [".jpg", ".jpeg", ".bmp", ".tiff"] and not filename.startswith("."):
         try:
-            with Image.open(jpg_path) as img:
-                img.save(png_path)
-            print(f"Converted: {filename} → {png_filename}")
-            os.remove(jpg_path)  # optional: delete original JPG
+            with Image.open(filepath) as img:
+                new_path = os.path.join(directory, f"{name}.png")
+                img.convert("RGBA").save(new_path)
+            os.remove(filepath)
+            print(f"Converted: {filename} → {name}.png")
         except Exception as e:
             print(f"Failed to convert {filename}: {e}")
