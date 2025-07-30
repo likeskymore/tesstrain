@@ -2,3 +2,5 @@
 *.built
 *.BAK
 *~
+ocrd-testset/
+.venv/
