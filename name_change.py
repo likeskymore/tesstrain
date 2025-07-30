@@ -1,31 +1,19 @@
-import os
-from PIL import Image  # Make sure Pillow is installed: pip install pillow
+from PIL import Image
+from pathlib import Path
 
-# === Set your directory ===
-directory ="data/trustsoft-ground-truth"  # ← Replace this with your actual path
+# === Config ===
+FOLDER = Path("testdata")  # Replace with actual folder path
+FILES = sorted(FOLDER.iterdir())
 
-# === 1. Rename .txt files to .gt.txt ===
-for filename in os.listdir(directory):
-    if filename.endswith(".txt") and not filename.endswith(".gt.txt"):
-        base = filename[:-4]  # remove ".txt"
-        new_filename = f"{base}.gt.txt"
-        os.rename(
-            os.path.join(directory, filename),
-            os.path.join(directory, new_filename)
-        )
-        print(f"Renamed TXT: {filename} → {new_filename}")
+# === Process and Rename ===
+for i, file in enumerate(FILES, start=1):
+    target_name = FOLDER / f"{i}.png"
 
-# === 2. Convert .jpg to .png ===
-for filename in os.listdir(directory):
-    if filename.lower().endswith(".jpg"):
-        jpg_path = os.path.join(directory, filename)
-        png_filename = filename[:-4] + ".png"
-        png_path = os.path.join(directory, png_filename)
+    if file.suffix.lower() != ".png":
+        with Image.open(file) as img:
+            img.convert("RGB").save(target_name, format="PNG")
+        file.unlink()  # Delete original non-png file
+    else:
+        file.rename(target_name)
 
-        try:
-            with Image.open(jpg_path) as img:
-                img.save(png_path)
-            print(f"Converted: {filename} → {png_filename}")
-            os.remove(jpg_path)  # optional: delete original JPG
-        except Exception as e:
-            print(f"Failed to convert {filename}: {e}")
+print("✅ Done: All files converted and renamed to PNG.")

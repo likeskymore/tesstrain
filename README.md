@@ -39,7 +39,7 @@ Video guide recommended for Windows users: [video guide](https://www.youtube.com
 3. Preprocessing train data
 
    - Train data should be put in `data/{your_model_name}-ground-truth/`
-   - run script `py name_change.py` to match data type with the expected type of the model
+   - run script `py extension_change.py` to match data extension with the expected extension of the model
 
 4. Training the model
 
@@ -56,6 +56,9 @@ Video guide recommended for Windows users: [video guide](https://www.youtube.com
    - TesseractOCR/
    ├── tessdata/ ⟶ **paste it here**
    └── etc..
+   - test data will be in the `testdata` folder. In that folder, the test images is currently being enumerated (which is recommended for faster lookup during cross check). Enumaration could be attained by running `name_change.py` script
+   - Choose model in `test_tesseract.py` file then run it to test your model with the current test data
+   - Results will be in the `results` folder in `{image-name}.txt` format
 
 ## Installation
 
