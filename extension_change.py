@@ -2,7 +2,7 @@ import os
 from PIL import Image  # Make sure Pillow is installed: pip install pillow
 
 # === Set your directory ===
-directory ="data/trustsoft-ground-truth"  # ← Replace this with your actual path
+directory ="data/trustsoft1-ground-truth"  # ← Replace this with your actual path
 
 # === 1. Rename .txt files to .gt.txt ===
 for filename in os.listdir(directory):

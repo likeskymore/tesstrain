@@ -4,15 +4,15 @@ from PIL import Image
 import pytesseract
 
 # === Configuration ===
-INPUT_FOLDER = Path("testdata")
+INPUT_FOLDER = Path("processed")
 OUTPUT_FOLDER = Path("results")
-MODEL = "trustsoft"
+MODEL = "trustsoft1"
 
 # === Create output directory if it doesn't exist ===
 OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
 
 # === Supported image extensions ===
-IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".tiff", ".bmp", ".gif"}
+IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".tiff", ".bmp", ".gif", ".tif"}
 
 # === Process all image files in the input folder ===
 for image_path in INPUT_FOLDER.iterdir():

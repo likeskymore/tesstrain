@@ -2,7 +2,7 @@ import subprocess
 import os
 
 # === Configuration ===
-model_name = "trustsoft"
+model_name = "trustsoft1"
 start_model = "vie"
 ground_truth_dir = f"data/{model_name}-ground-truth"
 tessdata_repo = "_best"
