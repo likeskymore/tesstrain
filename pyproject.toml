@@ -1,0 +1,12 @@
+[project]
+name = "tesstrain"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "matplotlib>=3.10.3",
+    "pandas>=2.3.1",
+    "pytesseract>=0.3.13",
+    "tqdm>=4.67.1",
+]
