@@ -1,8 +1,8 @@
 import os
-from PIL import Image  # Make sure Pillow is installed: pip install pillow
+from PIL import Image  
 
 # === Set your directory ===
-directory ="data/trustsoft1-ground-truth"  # ← Replace this with your actual path
+directory ="data/trustsoft7-ground-truth"  # ← Replace this with your actual path
 
 # === 1. Rename .txt files to .gt.txt ===
 for filename in os.listdir(directory):
@@ -21,7 +21,7 @@ for filename in os.listdir(directory):
     name, ext = os.path.splitext(filename)
     ext = ext.lower()
 
-    if ext in [".jpg", ".jpeg", ".bmp", ".tiff"] and not filename.startswith("."):
+    if ext in [".jpg", ".jpeg", ".bmp", ".tiff",".webp"] and not filename.startswith("."):
         try:
             with Image.open(filepath) as img:
                 new_path = os.path.join(directory, f"{name}.png")

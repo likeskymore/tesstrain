@@ -4,9 +4,9 @@ from PIL import Image
 import pytesseract
 
 # === Configuration ===
-INPUT_FOLDER = Path("processed")
+INPUT_FOLDER = Path("testdata")
 OUTPUT_FOLDER = Path("results")
-MODEL = "trustsoft1"
+MODEL = "trustsoft7_v3"
 
 # === Create output directory if it doesn't exist ===
 OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
@@ -22,10 +22,10 @@ for image_path in INPUT_FOLDER.iterdir():
             img = Image.open(image_path)
             text = pytesseract.image_to_string(img, lang=MODEL)
 
-            output_file = OUTPUT_FOLDER / f"{image_path.stem}_{MODEL}.txt"
+            output_file = OUTPUT_FOLDER / f"{MODEL}_{image_path.stem}.txt"
             with open(output_file, "w", encoding="utf-8") as f:
                 f.write(text)
-            print(f"✅ Saved to: {output_file.name}")
+            print(f"✅ Saved to: {output_file}")
 
         except Exception as e:
             print(f"❌ Failed to process {image_path.name}: {e}")
