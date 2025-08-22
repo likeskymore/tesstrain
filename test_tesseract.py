@@ -6,7 +6,7 @@ import pytesseract
 # === Configuration ===
 INPUT_FOLDER = Path("testdata")
 OUTPUT_FOLDER = Path("results")
-MODEL = "trustsoft7_v3"
+MODEL = "trustsoft8_v1"
 
 # === Create output directory if it doesn't exist ===
 OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)

@@ -2,11 +2,11 @@ import subprocess
 import os
 
 # === Configuration ===
-model_name = "trustsoft7"
+model_name = "trustsoft8"
 start_model = "vie"
 ground_truth_dir = f"data/{model_name}-ground-truth"
 tessdata_path = "../tessdata"
-max_iterations = "100000"
+max_iterations = "50000"
 epochs= '2' 
 learning_rate = "0.0001"
 ratio_train = "0.80"
